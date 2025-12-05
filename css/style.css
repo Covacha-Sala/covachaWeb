@@ -1,0 +1,70 @@
+/* Tipografía personalizada para títulos */
+        h1, h2, h3, .neon-text, .font-anton {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        /* Tipografía para el cuerpo de texto */
+        body, p, li, span, button, a {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilos de Neón */
+        .neon-text {
+            color: #fbbf24; /* amber-400 */
+            text-shadow: 0 0 5px #f59e0b, 0 0 10px #f59e0b, 0 0 20px #ef4444;
+        }
+        .neon-border {
+            border-color: #fbbf24;
+            box-shadow: 0 0 8px #f59e0b;
+        }
+        .neon-button {
+            transition: all 0.3s ease;
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 10px #f59e0b, 0 0 20px #f59e0b, 0 0 40px #f59e0b;
+            transform: translateY(-2px);
+        }
+
+        /* Estilo para la pizarra de eventos (estática) */
+        #events-board {
+            min-height: 200px;
+            white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+        }
+
+        /* Estilos del Carrusel (CORREGIDO Y OPTIMIZADO) */
+        .carousel {
+        display: flex; /* Coloca los ítems uno al lado del otro */
+        transition: transform 0.3s ease-in-out; /* Movimiento suave (por JS) */
+        
+        /* Eliminados los scroll-snap conflictivos */
+        }
+        .carousel::-webkit-scrollbar {
+        display: none;
+        }
+        .carousel-item {
+        flex: 0 0 100%;
+        height: 550px; /* altura fija, ajustada para ser más grande */
+        position: relative;
+        }
+        .carousel-item img {
+        width: 100%;
+        height: 100%;       /* ocupa toda la altura del contenedor */
+        object-fit: contain;  /* Ajusta la imagen completa sin cortar */
+        display: block;
+        border-radius: 0.5rem; /* mantiene esquinas redondeadas */
+        }
+
+        .chalkboard {
+        background: #111 url('https://www.transparenttextures.com/patterns/blackboard.png') repeat; /* textura tipo pizarra */
+        border-radius: 12px;
+        }
+
+        #events-board {
+        font-family: 'Courier New', monospace; /* estilo máquina de escribir/tiza */
+        text-shadow: 0 0 4px rgba(255, 191, 0, 0.6); /* brillo ámbar tipo tiza */
+        }
