@@ -1,4 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Funcionalidad del Menú Móvil (Hamburger) ---
+  const menuButton = document.getElementById('menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener('click', () => {
+      // Alterna la clase 'hidden' para mostrar/ocultar el menú
+      mobileMenu.classList.toggle('hidden');
+      
+      // Opcional: Cambiar el ícono (hamburguesa <-> X)
+      const icon = menuButton.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times'); // Muestra la hamburguesa
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times'); // Muestra la 'X'
+      }
+    });
+
+    // Ocultar el menú al hacer clic en un enlace (para móviles)
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            // Restaura el ícono a hamburguesa
+            menuButton.querySelector('i').classList.remove('fa-times');
+            menuButton.querySelector('i').classList.add('fa-bars');
+        });
+    });
+  }
+
   // --- Carrusel con flechas y autoplay ---
   const carousel = document.getElementById("photo-carousel");
   const items = carousel ? carousel.querySelectorAll(".carousel-item") : [];
@@ -41,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.addEventListener("mouseleave", startAutoplay);
   }
 
-  // --- Slideshow en hover de las tarjetas ---
+  // --- Slideshow en hover de las tarjetas ---\r\n
   document.querySelectorAll(".group").forEach(card => {
     const slides = card.querySelectorAll(".slideshow");
     let hoverIndex = 0;
@@ -65,20 +96,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- Efecto máquina de escribir en la pizarra ---
+  // --- Efecto máquina de escribir en la pizarra ---\r\n
   const board = document.getElementById("events-board");
   if (board) {
     const text = board.textContent;
     board.textContent = "";
-
     let i = 0;
+    const speed = 25; // milisegundos por letra
+
     function typeWriter() {
       if (i < text.length) {
         board.textContent += text.charAt(i);
         i++;
-        setTimeout(typeWriter, 30);
+        setTimeout(typeWriter, speed);
       }
     }
-    typeWriter();
+    // Inicia el efecto con un pequeño retraso
+    setTimeout(typeWriter, 500);
   }
 });
