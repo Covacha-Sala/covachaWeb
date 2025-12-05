@@ -18,6 +18,21 @@
             border-color: #fbbf24;
             box-shadow: 0 0 8px #f59e0b;
         }
+         .neon-border-gradient{
+            border: 3px solid transparent; 
+            border-radius: 12px; 
+            background: linear-gradient(to right, #f59e0b, #fbbf24) border-box; 
+            /*  Recorta el fondo para que solo se vea en el área del borde */
+            background-clip: padding-box, border-box;
+
+            /* 4. Shadow amplio para el efecto Neón (Glow) */
+            box-shadow: 0 0 10px #f59e0b, /* Sombra interior suave */
+                        0 0 20px rgba(251, 191, 36, 0.7); /* Sombra exterior amplia y brillante */
+            
+            /* Asegura que el contenido quede dentro del borde */
+            position: relative; 
+            z-index: 1;
+        }
         .neon-button {
             transition: all 0.3s ease;
         }
