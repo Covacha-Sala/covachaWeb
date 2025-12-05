@@ -14,33 +14,9 @@
             color: #fbbf24; /* amber-400 */
             text-shadow: 0 0 5px #f59e0b, 0 0 10px #f59e0b, 0 0 20px #ef4444;
         }
-        /* NUEVA CLASE: Aplica el brillo solo cuando se hace hover */
-        .hover-neon-text {
-            /* Por defecto, sin brillo. La transición se aplica en Tailwind. */
-            text-shadow: none; 
-        }
-        .hover-neon-text:hover {
-            color: #fbbf24; /* color del neón, aunque Tailwind ya lo hace */
-            text-shadow: 0 0 5px #f59e0b, 0 0 10px #f59e0b, 0 0 20px #ef4444;
-        }
         .neon-border {
             border-color: #fbbf24;
             box-shadow: 0 0 8px #f59e0b;
-        }
-         .neon-border-gradient{
-            border: 3px solid transparent; 
-            border-radius: 12px; 
-            background: linear-gradient(to right, #f59e0b, #fbbf24) border-box; 
-            /*  Recorta el fondo para que solo se vea en el área del borde */
-            background-clip: padding-box, border-box;
-
-            /* 4. Shadow amplio para el efecto Neón (Glow) */
-            box-shadow: 0 0 10px #f59e0b, /* Sombra interior suave */
-                        0 0 20px rgba(251, 191, 36, 0.7); /* Sombra exterior amplia y brillante */
-            
-            /* Asegura que el contenido quede dentro del borde */
-            position: relative; 
-            z-index: 1;
         }
         .neon-button {
             transition: all 0.3s ease;
@@ -50,45 +26,91 @@
             transform: translateY(-2px);
         }
 
-        /* Estilo para la pizarra de eventos (estática) */
-        #events-board {
-            min-height: 200px;
-            white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
-            text-align: left;
-            padding: 1rem 1.5rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.1rem;
+        /* NUEVA CLASE: Aplica el brillo solo cuando se hace hover */
+        .hover-neon-text {
+            /* Por defecto, sin brillo. La transición se aplica en Tailwind. */
+            text-shadow: none; 
         }
 
-        /* Estilos del Carrusel (CORREGIDO Y OPTIMIZADO) */
-        .carousel {
-        display: flex; /* Coloca los ítems uno al lado del otro */
-        transition: transform 0.3s ease-in-out; /* Movimiento suave (por JS) */
+        .hover-neon-text:hover {
+            color: #fbbf24; 
+            text-shadow: 0 0 5px #f59e0b, 0 0 10px #f59e0b, 0 0 20px #ef4444;
+        }
+
+        /* Estilo para el Borde con Degradado Neón */
+        .neon-border-gradient {
+            /* 1. Define el grosor del "borde" */
+            border: 3px solid transparent; 
+            border-radius: 0.5rem; /* Coincide con el rounded-lg de Tailwind */
+
+            /* 2. Aplica el degradado como fondo */
+            background: linear-gradient(to right, #f59e0b, #fbbf24) border-box; 
+
+            /* 3. CLAVE: Recorta el fondo para que solo se vea en el área del borde */
+            background-clip: padding-box, border-box;
+
+            /* 4. Shadow amplio para el efecto Neón (Glow) */
+            box-shadow: 0 0 10px #f59e0b, /* Sombra interior suave */
+                        0 0 20px rgba(251, 191, 36, 0.7); /* Sombra exterior amplia y brillante */
+            
+            position: relative; 
+            z-index: 1;
+        }
+
+        /* Estilos de la Pizarra de Eventos (Mobile-First) */
+        #events-board {
+            min-height: 200px;
+            white-space: pre-wrap;
+            text-align: left;
+            padding: 1rem; /* Padding reducido para móvil */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem; /* Fuente más pequeña para que quepa en <500px */
+            /* La animación de máquina de escribir se ajusta automáticamente a este tamaño */
+        }
         
-        /* Eliminados los scroll-snap conflictivos */
+        /* Ajuste de Pizarra para pantallas medianas/grandes */
+        @media (min-width: 500px) {
+            #events-board {
+                padding: 1.5rem;
+                font-size: 1.1rem; /* Vuelve al tamaño normal */
+            }
+        }
+
+
+        /* Estilos del Carrusel (Mobile-First) */
+        .carousel {
+        display: flex; 
+        transition: transform 0.3s ease-in-out; 
         }
         .carousel::-webkit-scrollbar {
         display: none;
         }
         .carousel-item {
         flex: 0 0 100%;
-        height: 550px; /* altura fija, ajustada para ser más grande */
+        height: 300px; /* Altura más compacta para móvil */
         position: relative;
         }
         .carousel-item img {
         width: 100%;
-        height: 100%;       /* ocupa toda la altura del contenedor */
-        object-fit: contain;  /* Ajusta la imagen completa sin cortar */
+        height: 100%;       
+        object-fit: contain;  /* Usa 'contain' para que la imagen completa quepa sin cortarse */
         display: block;
-        border-radius: 0.5rem; /* mantiene esquinas redondeadas */
+        border-radius: 0.5rem; 
         }
 
+        /* Ajuste de Carrusel para pantallas medianas/grandes (desktop) */
+        @media (min-width: 768px) {
+             .carousel-item {
+                height: 550px; /* Vuelve a la altura deseada en desktop */
+             }
+        }
+
+        /* Estilos de fondo de la pizarra */
         .chalkboard {
-        background: #111 url('https://www.transparenttextures.com/patterns/blackboard.png') repeat; /* textura tipo pizarra */
+        background: #111 url('https://www.transparenttextures.com/patterns/blackboard.png') repeat;
         border-radius: 12px;
         }
 
         #events-board {
-        font-family: 'Courier New', monospace; /* estilo máquina de escribir/tiza */
-        text-shadow: 0 0 4px rgba(255, 191, 0, 0.6); /* brillo ámbar tipo tiza */
+        text-shadow: 0 0 4px rgba(255, 191, 0, 0.6);
         }
