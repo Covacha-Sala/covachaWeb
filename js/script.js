@@ -37,6 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let autoplayInterval;
 
+    const dotsContainer = document.getElementById("carousel-dots");
+
+  // Crear dots dinámicamente
+  items.forEach((_, i) => {
+    const dot = document.createElement("button");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      currentIndex = i;
+      showSlide(currentIndex);
+      updateDots();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
   function showSlide(i) {
     // mover el carrusel al slide correspondiente
     carousel.style.transform = `translateX(-${i * 100}%)`;

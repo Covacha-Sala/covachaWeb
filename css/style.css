@@ -98,6 +98,20 @@
         border-radius: 0.5rem; 
         }
 
+        /* Dots */
+        #carousel-dots button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #aaa;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+        #carousel-dots button.active {
+        background-color: #f59e0b; /* amber-500 */
+        }
+
         /* Ajuste de Carrusel para pantallas medianas/grandes (desktop) */
         @media (min-width: 768px) {
              .carousel-item {
