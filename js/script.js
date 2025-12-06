@@ -51,16 +51,44 @@ document.addEventListener("DOMContentLoaded", () => {
     dotsContainer.appendChild(dot);
   });
 
+  // 2. Lógica para crear los dots dinámicamente y hacerlos interactivos
+  if (dotsContainer) {
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("button");
+      // Clases de Tailwind: gris (inactivo) y transición
+      dot.classList.add("w-3", "h-3", "rounded-full", "bg-gray-600", "hover:bg-amber-400", "transition");
+      dot.setAttribute("data-index", i);
+      
+      // Permite hacer clic en el dot para ir a esa imagen
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        showSlide(currentIndex);
+        // Reiniciar el autoplay al hacer click en un dot
+        stopAutoplay();
+        startAutoplay();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
   function showSlide(i) {
     // mover el carrusel al slide correspondiente
     carousel.style.transform = `translateX(-${i * 100}%)`;
     updateDots();
   }
 
-  function updateDots() {
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle("active", idx === currentIndex);
-    });
+  function updateDots(index) {
+    if (!dotsContainer) return;
+    const dots = dotsContainer.children;
+    for (let i = 0; i < dots.length; i++) {
+      if (i === index) {
+        dots[i].classList.remove("bg-gray-600"); // Quita el color inactivo
+        dots[i].classList.add("bg-amber-500");  // Añade el color activo (ámbar)
+      } else {
+        dots[i].classList.remove("bg-amber-500"); // Quita el color activo
+        dots[i].classList.add("bg-gray-600");    // Añade el color inactivo (gris)
+      }
+    }
   }
 
   function nextSlide() {
