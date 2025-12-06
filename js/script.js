@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showSlide(i) {
     // mover el carrusel al slide correspondiente
     carousel.style.transform = `translateX(-${i * 100}%)`;
+    updateDots();
   }
 
   function updateDots() {
