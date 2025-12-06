@@ -56,6 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.style.transform = `translateX(-${i * 100}%)`;
   }
 
+  function updateDots() {
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle("active", idx === currentIndex);
+    });
+  }
+
   function nextSlide() {
     currentIndex = (currentIndex + 1) % total;
     showSlide(currentIndex);
